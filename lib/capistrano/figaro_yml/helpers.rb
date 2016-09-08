@@ -11,7 +11,8 @@ module Capistrano
 
         @local_figaro_yml.each do |key, value|
           if key == env
-            local_figaro[deployment_env] = @local_figaro_yml[key]
+            display_env = (env == 'staging' ? 'production' : env)
+            local_figaro[display_env] = @local_figaro_yml[key]
           elsif !value.is_a?(Hash)
             local_figaro[key] = @local_figaro_yml[key]
           end
@@ -19,7 +20,7 @@ module Capistrano
 
         local_figaro
       end
-
+      
       def figaro_yml_env
         fetch(:figaro_yml_env).to_s
       end

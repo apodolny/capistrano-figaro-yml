@@ -1,10 +1,11 @@
 include Capistrano::FigaroYml::Paths
 include Capistrano::FigaroYml::Helpers
 
-namespace :load do task :defaults do
+namespace :load do
+  task :defaults do
     set :figaro_yml_local_path, "config/application.yml"
     set :figaro_yml_remote_path, "config/application.yml"
-    set :figaro_yml_env, -> { fetch(:figaro_env) || fetch(:rails_env) || fetch(:stage) }
+    set :figaro_yml_env, -> { fetch(:rails_env) || fetch(:stage) }
   end
 end
 
